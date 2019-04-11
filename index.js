@@ -29,6 +29,8 @@ CloudStorageAdapter.compatibilityLevel = 1
 CloudStorageAdapter.SCHEMA_TYPES = {
   filename: String,
   originalname: String,
+  bucket: String,
+	path: String,
   mimetype: String,
   url: String
 }
@@ -37,7 +39,9 @@ CloudStorageAdapter.SCHEMA_FIELD_DEFAULTS = {
   filename: true,
   originalname: true,
   mimetype: true,
-  url: true
+  url: true,
+  bucket: true,
+  path: true
 }
 
 CloudStorageAdapter.prototype._clientForFile = function (file) {
