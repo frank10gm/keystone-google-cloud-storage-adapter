@@ -1,6 +1,6 @@
 {
   "name": "keystone-google-cloud-storage-adapter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Google Cloud Storage adapter for KeystoneJS",
   "main": "index.js",
   "author": "Frankie <francesco.laplaca@enhancers.it>",
