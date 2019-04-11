@@ -32,7 +32,8 @@ CloudStorageAdapter.SCHEMA_TYPES = {
   bucket: String,
 	path: String,
   mimetype: String,
-  url: String
+  url: String,
+  etag: String,
 }
 
 CloudStorageAdapter.SCHEMA_FIELD_DEFAULTS = {
@@ -40,8 +41,9 @@ CloudStorageAdapter.SCHEMA_FIELD_DEFAULTS = {
   originalname: true,
   mimetype: true,
   url: true,
-  bucket: true,
-  path: true
+  bucket: false,
+  path: false,
+  etag: false,
 }
 
 CloudStorageAdapter.prototype._clientForFile = function (file) {
