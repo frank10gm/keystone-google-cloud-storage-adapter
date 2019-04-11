@@ -2,13 +2,21 @@
 
 This adapter is designed to use it in KeystoneJS File field.
 
+## Install
+
+`npm i keystone-google-cloud-storage-adapter --save`
+
+or
+
+`yarn add keystone-google-cloud-storage-adapter`
+
 ## Usage
 
 Configure the storage adapter:
 
 ```js
 var storage = new keystone.Storage({
-  adapter: require('keystone-storage-adapter-cloud-storage'),
+  adapter: require('keystone-google-cloud-storage-adapter'),
   cloudStorage: {
     keyFilename: 'gcloud_auth.json',
     path: 'uploads/',
