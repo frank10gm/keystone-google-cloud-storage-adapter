@@ -15,12 +15,10 @@ function CloudStorageAdapter (options, schema) {
 
   this.client = storage(this.options)
 
-  // If keyFilename is specified it must be absolute.
   if (options.keyFilename != null && !pathlib.isAbsolute(options.keyFilename)) {
-    throw Error('Configuration error: Google cloud container keyFilename must be absolute')
+    throw Error('Configuration error, incorrect keyfile')
   }
 
-  // Ensure the generateFilename option takes a callback
   this.options.generateFilename = ensureCallback(this.options.generateFilename)
 
   return this
@@ -42,8 +40,6 @@ CloudStorageAdapter.SCHEMA_FIELD_DEFAULTS = {
   url: true
 }
 
-// Return a reserved client for file if it belongs
-// to a different bucket that the global.
 CloudStorageAdapter.prototype._clientForFile = function (file) {
   if (file.bucket && file.bucket !== this.options.bucket) {
     const options = Object.assign({}, this.options, {
@@ -69,10 +65,8 @@ CloudStorageAdapter.prototype.uploadFile = function (file, callback) {
   this.options.generateFilename(file, 0, function (err, filename) {
     if (err) return callback(err)
 
-    // The expanded path of the file on the filesystem.
     const localpath = self._resolveFilename(file)
 
-    // Relative path inside cloud storage bucket.
     file.path = self.options.path
     if (self.options.uniqueFilename) {
       file.filename = filename
@@ -138,7 +132,7 @@ CloudStorageAdapter.prototype.fileExists = function (filename, callback) {
     .exists(function (err, exists) {
       if (err) return callback(err)
 
-      if (!exists) return callback() // File does not exist
+      if (!exists) return callback()
 
       callback(null, exists)
     })
